@@ -30,7 +30,8 @@ class Contact(models.Model):
     twitter = models.CharField(max_length=255, blank=True, null=True)
     status = models.CharField(max_length=13, choices=STATUS_CHOICES, default=NOT_RATED)
     relationship = models.CharField(max_length=8, choices=RELATIONSHIP_CHOICES, default=UNKNOWN)
-    first_contact = models.DateField
+    first_contact = models.DateField(blank=True, null=True)
+    
 
 
 
