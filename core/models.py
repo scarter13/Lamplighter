@@ -1,7 +1,16 @@
 from django.db import models
 
+class Address(models.Model):
+    pass
+
 class Company(models.Model):
     name = models.CharField(max_length=255)
+    address_one = models.Charfield(max_length=255, blank=true, null=true)
+    address_two = models.Charfield(max_length=255, blank=true, null=true)
+    city = models.Charfield(max_length=255, blank=true, null=true)
+    state = models.Charfield(max_length=255, blank=true, null=true)
+    zip_code = models.Charfield(max_length=255, blank=true, null=true)
+    email = models.EmailField(max_length=255, blank=true, null=true)
 
 
 class Contact(models.Model):
@@ -30,7 +39,11 @@ class Contact(models.Model):
     twitter = models.CharField(max_length=255, blank=True, null=True)
     status = models.CharField(max_length=13, choices=STATUS_CHOICES, default=NOT_RATED)
     relationship = models.CharField(max_length=8, choices=RELATIONSHIP_CHOICES, default=UNKNOWN)
-    first_contact = models.DateField(blank=True, null=True)
+    
+    #first_contact = models.DateField(blank=True, null=True)
+
+class CallDate(models.model):
+    pass
     
 
 
