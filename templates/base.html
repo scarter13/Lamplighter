@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block meta %}{% endblock %}
+    <title>{% block title %} Lamplighter {% endblock %}</title>
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+</head>
+<body>
+    <div>
+        <a class="link dim black f6 f4-ns dib mr3 ml3" href="{% url 'auth_login' %}" title="Login">Log In</a>
+        <a class="link dim black f6 f4-ns dib mr3 ml3" href="{% url 'registration_register' %}" title="CreateAccount">Sign Up</a>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
