@@ -43,7 +43,7 @@ class Contact(models.Model):
     twitter = models.CharField(max_length=255, blank=True, null=True)
     status = models.CharField(max_length=13, choices=STATUS_CHOICES, default=NOT_RATED)
     relationship = models.CharField(max_length=8, choices=RELATIONSHIP_CHOICES, default=UNKNOWN)
-    company = models.ForeignKey(to=Company, on_delete=models.CASCADE, blank=True, null=True,related_name="employees")
+    company = models.ForeignKey(to=Company, on_delete=models.CASCADE, blank=True, null=True, related_name="contacts")
 
     #first_contact = models.DateField(blank=True, null=True)
 
@@ -53,8 +53,5 @@ class Conversation(models.Model):
     date = models.DateTimeField(auto_now_add=True) 
     follow_up_date = models.DateField(null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
+
     
-
-
-
-

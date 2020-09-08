@@ -2,12 +2,11 @@
 
 {% block content %}
     <div>
-        <h2 class="tc black">Lamplighter</h2>
-        <p>You are now logged in as {{ user.username }}</p>
+        <h2 class ="tc">Welcome back, {{ user.username }}</h2>
     </div>
     <div>
         <ul>
-            <li><a href=#>My Companies</a></li>
+            <li><a href= "{% url 'my_companies' %}" >My Companies</a></li>
             <li><a href=#>My Contacts</a></li>
             <li><a href=#>My Conversations</a></li>
         </ul>

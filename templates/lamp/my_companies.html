@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    <h3>My Companies</h3>
+</div>
+
+<p>Add a new company</p>
+
+    {% for company in companies %}
+        <div>
+            <h4> {{ company.name }}</h4>
+                {% if company.num_contacts %}
+                    <p><strong>Contacts: {{ company.num_contacts }}</strong></p>
+                {% endif %}           
+        </div>
+    {% endfor %}
+
+{% endblock %}
