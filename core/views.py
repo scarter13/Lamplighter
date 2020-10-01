@@ -27,7 +27,11 @@ def add_company(request):
             company = form.save(commit=False)
             company.user = request.user
             company.save()
-            return redirect(to='')
+            return redirect(to='my_companies')
+    else:
+        form = CompanyForm()
+
+    return render(request, "lamp/add_company.html")
 
 """
 @login_required
