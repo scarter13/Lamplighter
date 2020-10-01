@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db.models import Count
+from .models import Company, Contact, Conversation, CompanyNote, ContactNote
+from .forms import CompanyForm, ContactForm, ConversationForm, CompanyNoteForm, ContactNoteForm
 
 # Create your views here.
 def login(request):
@@ -17,3 +19,28 @@ def my_companies(request):
     #companies = lamp_sort(companies)
     #companies = companies.annotate(num_contacts=Count("contacts"))
     return render(request, "lamp/my_companies.html", {"companies": companies})
+
+def add_company(request):
+    if request.method == "POST":
+        form = CompanyForm(data=request.POST)
+        if form.is_valid():
+            company = form.save(commit=False)
+            company.user = request.user
+            company.save()
+            return redirect(to='')
+
+"""
+@login_required
+def create_question(request):
+    if request.method == "POST":
+        form = QuestionForm(data=request.POST)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.user = request.user
+            question.save()
+            return redirect(to='my_qbox')
+    else:
+        form = QuestionForm()
+
+    return render(request, "qbox/create_question.html", {"form": form})
+"""

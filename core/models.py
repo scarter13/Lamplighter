@@ -1,20 +1,12 @@
 from django.db import models
 from users.models import User
 
-class Address(models.Model):
-    pass
 
 class Company(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, related_name="companies")
     name = models.CharField(max_length=255)
-    address_one = models.CharField(max_length=255, blank=True, null=True)
-    address_two = models.CharField(max_length=255, blank=True, null=True)
-    city = models.CharField(max_length=255, blank=True, null=True)
-    state = models.CharField(max_length=255, blank=True, null=True)
-    zip_code = models.CharField(max_length=255, blank=True, null=True)
-    email = models.EmailField(max_length=255, blank=True, null=True)
-    
-
+    description = models.TextField(null=True, blank=True)
+    careers = models.URLField(null=True, blank=True)
 
 class Contact(models.Model):
     BOOSTER = 'BOOSTER'
@@ -50,8 +42,27 @@ class Contact(models.Model):
 class Conversation(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, related_name="conversations")
     contact = models.ForeignKey(to=Contact, on_delete=models.CASCADE, null=True, related_name="conversations")
-    date = models.DateTimeField(auto_now_add=True) 
-    follow_up_date = models.DateField(null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True) 
 
-    
+    class Meta:
+        ordering = ['-date']
+
+class CompanyNote(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, related_name="company_notes")
+    company = models.ForeignKey(to=Company, on_delete=models.CASCADE, null = True, related_name = "notes")
+    text = models.TextField(null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-date']
+
+class ContactNote(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, related_name="contact_notes")
+    contact = models.ForeignKey(to=Contact, on_delete=models.CASCADE, null = True, related_name = "notes")
+    text = models.TextField(null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-date']
+

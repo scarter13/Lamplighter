@@ -20,9 +20,12 @@ from core import views as core_views
 
 urlpatterns = [
     path('', core_views.login, name= 'login'),
-    path('lamp/companies/', core_views.my_companies, name = 'my_companies'),
-    path('accounts/', include('registration.backends.simple.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('registration.backends.simple.urls')),
+    path('lamp/companies/', core_views.my_companies, name = 'my_companies'),
+    path('lamp/add/company', core_views.add_company, name = 'add_company'),
+
+ 
 ]
 
 if settings.DEBUG:
