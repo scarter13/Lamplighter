@@ -31,7 +31,24 @@ def add_company(request):
     else:
         form = CompanyForm()
 
-    return render(request, "lamp/add_company.html")
+    return render(request, "lamp/add_company.html", {"form": form})
+
+def my_contacts(request):
+    contacts = request.user.contacts.all()
+    return render(request, "lamp/my_contacts.html", {"contacts": contacts})
+
+def add_contact(request):
+    if request.method == "POST":
+        form = ContactForm(data=request.POST)
+        if form.is_valid():
+            contact = form.save(commit=False)
+            contact.user = request.user
+            contact.save()
+            return redirect(to='my_contacts')
+    else:
+        form = ContactForm()
+
+    return render(request, "lamp/add_contact.html", {"form": form})
 
 """
 @login_required

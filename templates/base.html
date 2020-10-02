@@ -14,7 +14,7 @@
             <div class="tc pb3">
                 {% if user.is_authenticated %}
                     <a class="link dim black f6 f4-ns dib mr3 ml3" href="{% url 'my_companies' %}" title="Companies">My Companies</a>
-                    <a class="link dim black f6 f4-ns dib mr3 ml3" href=# title="Contacts">My Contacts</a>
+                    <a class="link dim black f6 f4-ns dib mr3 ml3" href="{% url 'my_contacts' %}" title="Contacts">My Contacts</a>
                     <a class="link dim black f6 f4-ns dib mr3 ml3" href=# title="Contacts">My Conversations</a>
                     <a class="link dim black f6 f4-ns dib mr3 ml3" href="{% url 'my_companies' %}" title="To-Do">To Do List</a>
                     <a class="link dim black f6 f4-ns dib mr3 ml3" href="{% url 'auth_logout' %}" title="Logout">Log Out</a>

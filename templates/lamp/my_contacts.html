@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    <h2 class="tc">My Contacts</h2>
+</div>
+
+<p class="tr mr6"><a class="f6 link dim br3 ph3 pv2 mb2 dib white bg-dark-green" href="{% url 'add_contact' %}" title="Add-Company">Add a New Contact</a></p>
+
+    {% for contact in contacts %}
+        <div>
+            <h4> {{ contact.name }}, {{ contact.company }}</h4>       
+        </div>
+    {% endfor %}
+
+{% endblock %}
