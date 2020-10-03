@@ -14,7 +14,8 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = [
-            'name',
+            'first_name',
+            'last_name',
             'company',
             'email',
             'linkedin',

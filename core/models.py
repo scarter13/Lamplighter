@@ -8,6 +8,9 @@ class Company(models.Model):
     description = models.TextField(null=True, blank=True)
     careers = models.URLField(null=True, blank=True)
 
+    def __str__(self):
+        return self.name
+
 class Contact(models.Model):
     BOOSTER = 'BOOSTER'
     OBLIGATE = 'OBLIGATE'
@@ -28,7 +31,8 @@ class Contact(models.Model):
         (UNKNOWN, 'Not Known'),
     ]
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, related_name="contacts")
-    name = models.CharField(max_length=255)
+    first_name = models.CharField(max_length=255, blank=True, null=True)
+    last_name = models.CharField(max_length=255, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     phone = models.CharField(max_length=14, blank=True, null=True)
     linkedin = models.CharField(max_length=255, blank=True, null=True)
