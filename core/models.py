@@ -1,12 +1,13 @@
 from django.db import models
 from users.models import User
+from phone_field import PhoneField
 
 
 class Company(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, related_name="companies")
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    careers = models.URLField(null=True, blank=True)
+    careers = models.URLField(null=True, blank=True, help_text='(A link to the company job board)')
 
     def __str__(self):
         return self.name
@@ -34,9 +35,9 @@ class Contact(models.Model):
     first_name = models.CharField(max_length=255, blank=True, null=True)
     last_name = models.CharField(max_length=255, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
-    phone = models.CharField(max_length=14, blank=True, null=True)
-    linkedin = models.CharField(max_length=255, blank=True, null=True)
-    twitter = models.CharField(max_length=255, blank=True, null=True)
+    phone = PhoneField(blank=True, null=True, help_text='Contact Phone Number')
+    linkedin = models.URLField(null=True, blank=True)
+    twitter = models.URLField(null=True, blank=True)
     status = models.CharField(max_length=13, choices=STATUS_CHOICES, default=NOT_RATED)
     relationship = models.CharField(max_length=8, choices=RELATIONSHIP_CHOICES, default=UNKNOWN)
     company = models.ForeignKey(to=Company, on_delete=models.CASCADE, blank=True, null=True, related_name="contacts")

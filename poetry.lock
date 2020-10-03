@@ -114,6 +114,17 @@ whitenoise = "*"
 
 [[package]]
 category = "main"
+description = "Lightweight model and form field for phone numbers in Django"
+name = "django-phone-field"
+optional = false
+python-versions = "*"
+version = "1.8.1"
+
+[package.dependencies]
+Django = ">=1.10"
+
+[[package]]
+category = "main"
 description = "An extensible user-registration application for Django"
 name = "django-registration"
 optional = false
@@ -458,7 +469,7 @@ python-versions = "*"
 version = "1.12.1"
 
 [metadata]
-content-hash = "cf01025f29a9f656edf2e50e87c3f951786bf0d36d8815cb77346cf896935058"
+content-hash = "6b0f83ef9a2f53568b51cdfdc1680ed4d70fc6b5c1f60ba9d06f0d52cc8bb117"
 python-versions = "3.8.2"
 
 [metadata.files]
@@ -501,6 +512,10 @@ django-extensions = [
 django-heroku = [
     {file = "django-heroku-0.3.1.tar.gz", hash = "sha256:6af4bc3ae4a9b55eaad6dbe5164918982d2762661aebc9f83d9fa49f6009514e"},
     {file = "django_heroku-0.3.1-py2.py3-none-any.whl", hash = "sha256:2bc690aab89eedbe01311752320a9a12e7548e3b0ed102681acc5736a41a4762"},
+]
+django-phone-field = [
+    {file = "django-phone-field-1.8.1.tar.gz", hash = "sha256:db63af60fc3a3c66b9faa7e72bb7972cd1518299f2e93d68dd95d8df6214f7ed"},
+    {file = "django_phone_field-1.8.1-py3-none-any.whl", hash = "sha256:407e74b65e8f7dd14d0a0aa89e277516d57ad6a09ce992cdd94e15b1624b9961"},
 ]
 django-registration = [
     {file = "django-registration-3.1.tar.gz", hash = "sha256:2437a098e6e06983e4b4b442680b1c49a2e979f1a0ef3a504beb3a84ff36131d"},

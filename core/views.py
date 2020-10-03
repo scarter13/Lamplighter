@@ -17,7 +17,7 @@ def my_companies(request):
     companies = request.user.companies.all()
     #think about a helper function to sort them.  Javascript?
     #companies = lamp_sort(companies)
-    #companies = companies.annotate(num_contacts=Count("contacts"))
+    companies = companies.annotate(num_contacts=Count("contacts"))
     return render(request, "lamp/my_companies.html", {"companies": companies})
 
 def add_company(request):
