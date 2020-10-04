@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
     path('lamp/companies/', core_views.my_companies, name = 'my_companies'),
+    path('lamp/company/<int:company_pk>/', core_views.company_detail, name = 'company_detail'),
     path('lamp/contacts/', core_views.my_contacts, name = 'my_contacts'),
     path('lamp/add/company', core_views.add_company, name = 'add_company'),
     path('lamp/add/contact', core_views.add_contact, name = 'add_contact'),

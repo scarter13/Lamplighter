@@ -10,10 +10,12 @@
     <div class="flex flex-wrap">
         {% for company in companies %}
             <div class="contain ma3 w-20 pa3 outline shadow-2">
+                <a href="{% url 'company_detail' company_pk=company.pk %}">
                 <h3 class="tc"> {{ company.name }}</h3>
                     {% if company.num_contacts %}
                         <p class="tc"><strong>Contacts: {{ company.num_contacts }}</strong></p>
-                    {% endif %}           
+                    {% endif %}  
+                </a>
             </div>
         {% endfor %}
     </div>

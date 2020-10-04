@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
 from .models import Company, Contact, Conversation, CompanyNote, ContactNote
 from .forms import CompanyForm, ContactForm, ConversationForm, CompanyNoteForm, ContactNoteForm
+
 
 # Create your views here.
 def login(request):
@@ -15,6 +16,7 @@ def my_home(request):
 
 def my_companies(request):
     companies = request.user.companies.all()
+    print("inside my companies view")
     #think about a helper function to sort them.  Javascript?
     #companies = lamp_sort(companies)
     companies = companies.annotate(num_contacts=Count("contacts"))
@@ -32,6 +34,12 @@ def add_company(request):
         form = CompanyForm()
 
     return render(request, "lamp/add_company.html", {"form": form})
+
+def company_detail(request, company_pk):
+    company = get_object_or_404(Company, pk=company_pk)
+    contacts = company.contacts.all()
+    company_notes = company.notes.all()
+    return render(request, "lamp/company_detail.html", {"company": company, "contacts": contacts, "company_notes": company_notes})
 
 def my_contacts(request):
     contacts = request.user.contacts.all()

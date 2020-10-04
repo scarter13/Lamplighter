@@ -30,6 +30,7 @@ class ConversationForm(forms.ModelForm):
     class Meta:
         model = Conversation
         fields = [
+            'title',
             'notes',
         ]
 
@@ -37,6 +38,7 @@ class CompanyNoteForm(forms.ModelForm):
     class Meta:
         model = CompanyNote
         fields = [
+            'title',
             'text',
         ]
 
@@ -44,5 +46,6 @@ class ContactNoteForm(forms.ModelForm):
     class Meta:
         model = ContactNote
         fields = [
+            'title',
             'text',
         ]

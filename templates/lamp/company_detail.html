@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ company.name }}
+{% endblock %}
+
+{% block content %}
+
+
+<h2 class="ma4">{{ company.name }}</h2>
+<div class="ma4">
+    <p class="ma3">{{ company.description }}</p>
+    {% if company.careers %}
+    <p class="ma3" >Job Board:  <a href="#">{{ company.careers }}</a></p>
+    {% endif %}
+</div>
+<div class="flex justify-center">    
+    <div class = "ma3 w-40 pa3 outline shadow-2">
+        <h3 class = "ma3 tc" >Contacts:</h3>
+        {% if contacts %}
+            {% for contact in contacts %}
+            <p> {{ contact.first_name }} {{ contact.last_name }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class = "ma3 w-40 pa3 outline shadow-2">
+            <h3 class = "ma3 tc" >Notes:</h3>
+                <ul>
+                    {% for note in company_notes %}
+                    <li><a href="#"><p>{{ note.date }} <strong>{{ note.title }}</strong></p></a></li>
+                    {% endfor %}
+                </ul>
+        </div>
+
+
+    </div>
+
+{% endblock %}
+
+   

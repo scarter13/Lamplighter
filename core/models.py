@@ -47,6 +47,7 @@ class Contact(models.Model):
 class Conversation(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, related_name="conversations")
     contact = models.ForeignKey(to=Contact, on_delete=models.CASCADE, null=True, related_name="conversations")
+    title = models.CharField(max_length=255, blank=True, null=True)
     notes = models.TextField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True) 
 
@@ -55,6 +56,7 @@ class Conversation(models.Model):
 
 class CompanyNote(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, related_name="company_notes")
+    title = models.CharField(max_length=255, blank=True, null=True)
     company = models.ForeignKey(to=Company, on_delete=models.CASCADE, null = True, related_name = "notes")
     text = models.TextField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
@@ -65,6 +67,7 @@ class CompanyNote(models.Model):
 class ContactNote(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, related_name="contact_notes")
     contact = models.ForeignKey(to=Contact, on_delete=models.CASCADE, null = True, related_name = "notes")
+    title = models.CharField(max_length=255, blank=True, null=True)
     text = models.TextField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
 
