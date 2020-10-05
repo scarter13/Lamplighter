@@ -25,7 +25,7 @@ urlpatterns = [
     path('lamp/companies/', core_views.my_companies, name = 'my_companies'),
     path('lamp/company/<int:company_pk>/', core_views.company_detail, name = 'company_detail'),
     path('lamp/contacts/', core_views.my_contacts, name = 'my_contacts'),
-    path('lamp/contact/detail/', core_views.contact_detail, name = 'contact_detail'),
+    path('lamp/contact/<int:contact_pk>', core_views.contact_detail, name = 'contact_detail'),
     path('lamp/add/company', core_views.add_company, name = 'add_company'),
     path('lamp/add/contact', core_views.add_contact, name = 'add_contact'),
 
