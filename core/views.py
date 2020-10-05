@@ -58,18 +58,8 @@ def add_contact(request):
 
     return render(request, "lamp/add_contact.html", {"form": form})
 
-"""
-@login_required
-def create_question(request):
-    if request.method == "POST":
-        form = QuestionForm(data=request.POST)
-        if form.is_valid():
-            question = form.save(commit=False)
-            question.user = request.user
-            question.save()
-            return redirect(to='my_qbox')
-    else:
-        form = QuestionForm()
-
-    return render(request, "qbox/create_question.html", {"form": form})
-"""
+def contact_detail(request, contact_pk):
+    contact = get_object_or_404(Contact, pk=contact_pk)
+    conversations = contact.conversations.all()
+    contact_notes = contact.notes.all()
+    return render(request, "lamp/contact_detail.html", {"contact": contact, "conversations": conversations, "contact_notes": contact_notes})

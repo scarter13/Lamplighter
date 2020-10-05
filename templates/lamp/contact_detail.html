@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ contact.first_name }} {{ contact.last_name}}
+{% endblock %}
+
+{% block content %}
+
+
+<h2 class="ma4">{{ contact.first_name }} {{ contact.last_name }}</h2>
+<h3 class="ma4">{{ contact.company }}</h3>
+<div class="ma4">
+    {% if contact.email %}
+        <p class="ma3">Email:  {{ contact.email }}</p>
+    {% endif %}
+    {% if contact.phone %}
+        <p class="ma3">Phone:  {{ contact.phone }}</p>
+    {% endif %}
+    {% if contact.linkedin %}
+        <p class="ma3">LinkedIn:  {{ contact.linkedin }}</p>
+    {% endif %}
+    {% if contact.twitter %}
+        <p class="ma3">Twitter:  {{ contact.twitter }}</p>
+    {% endif %}
+        <p class="ma3">Relationship:  {{ contact.relationship }}</p>  
+        <p class="ma3">Status:  {{ contact.status }}</p>
+<div class="flex justify-center">    
+    <div class = "ma3 w-40 pa3 outline shadow-2">
+        <h3 class = "ma3 tc" >Notes:</h3>
+        {% if contact_notes %}
+            {% for note in contact_notes %}
+            <p> <a href="#">{{ note.date }}  {{ note.title }}</a></p>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class = "ma3 w-40 pa3 outline shadow-2">
+        <h3 class = "ma3 tc" >Conversations:</h3>
+            {% if conversations %}
+                {% for conversation in conversations %}
+                <p><a href="#">{{ conversation.date }} <strong>{{ conversation.title }}</strong></a></p>
+                {% endfor %}
+            {% endif %}
+    </div>
+</div>
+
+{% endblock %}

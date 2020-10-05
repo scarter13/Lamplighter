@@ -19,21 +19,19 @@
         <h3 class = "ma3 tc" >Contacts:</h3>
         {% if contacts %}
             {% for contact in contacts %}
-            <p> {{ contact.first_name }} {{ contact.last_name }}</p>
+                <p><a href="{% url 'contact_detail' contact_pk=contact.pk %}">{{ contact.first_name }} {{ contact.last_name }}</a></p>
             {% endfor %}
         {% endif %}
     </div>
     <div class = "ma3 w-40 pa3 outline shadow-2">
-            <h3 class = "ma3 tc" >Notes:</h3>
-                <ul>
-                    {% for note in company_notes %}
-                    <li><a href="#"><p>{{ note.date }} <strong>{{ note.title }}</strong></p></a></li>
-                    {% endfor %}
-                </ul>
-        </div>
-
-
+        <h3 class = "ma3 tc" >Notes:</h3>
+        {% if company_notes %}
+            {% for note in company_notes %}
+                <p><a href="#">{{ note.date }} <strong>{{ note.title }}</strong></a></p>
+            {% endfor %}
+        {% endif %}              
     </div>
+</div>
 
 {% endblock %}
 
