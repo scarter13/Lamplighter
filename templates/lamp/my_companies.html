@@ -7,7 +7,7 @@
 
 
 <p class="tc"><a class="f6 link dim br3 ph3 pv2 mb2 dib white bg-dark-green" href="{% url 'add_company' %}" title="Add-Company">Add a New Company</a></p>
-    <div class="flex flex-wrap">
+    <div class="flex flex-wrap justify-center">
         {% for company in companies %}
             <div class="contain ma3 w-20 pa3 outline shadow-2">
                 <a href="{% url 'company_detail' company_pk=company.pk %}">

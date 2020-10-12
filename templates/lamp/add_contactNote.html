@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="ml6 black">{{ contact.name }}</h2>
+
+<div class="ma3">
+    <form class="ml6 pa2 w-100 black" action="{% url 'add_contact_note' %}" method = "POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <button class="f6 link dim br3 ph3 pv2 mb2 dib white bg-dark-green" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock %}

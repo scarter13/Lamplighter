@@ -9,7 +9,11 @@
 
 <h2 class="tc">{{ contact.first_name }} {{ contact.last_name }}, {{ contact.company }}</h2>
 <div class="flex justify-center">  
-    <div class="ma3 w-40 pa3">
+    <div class="ma3 w-30 pa3 outline shadow-2">
+        <div class="flex justify-between">
+            <p class = "ma3 b f4 tc" >Details:</p>
+            <p class="tc"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="{% url 'edit_contact' contact_pk=contact.pk %}" title="edit">Edit</a></p>
+        </div>
         {% if contact.email %}
             <p class="ma3">Email:  {{ contact.email }}</p>
         {% endif %}
@@ -25,10 +29,20 @@
             <p class="ma3">Relationship:  {{ contact.relationship }}</p>  
             <p class="ma3">Status:  {{ contact.status }}</p>
     </div>
-    <div class="ma3 w-20 pa3 outline shadow-2" id="profilePic">
+    <div class="ma3 w-30 pa3 outline shadow-2">
+        <div class="flex justify-between">
+            <p class = "ma3 b f4 tc" >Notes:</p>
+            <p class="tc"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="{% url 'add_contact_note' contact_pk=contact.pk %}">Add Note</a></p>
+        </div>
+        {% if contact_notes %}
+            {% for note in contact_notes %}
+            <p> <a href="#">{{ note.date }}  {{ note.title }}</a></p>
+            {% endfor %}
+        {% endif %}
     </div>
 </div>
-<div class="flex justify-center">    
+<div class="flex justify-center">  
+<!--
     <div class = "ma3 w-40 pa3 outline shadow-2">
         <h3 class = "ma3 tc" >Notes:</h3>
         {% if contact_notes %}
@@ -37,8 +51,11 @@
             {% endfor %}
         {% endif %}
     </div>
-    <div class = "ma3 w-40 pa3 outline shadow-2">
-        <h3 class = "ma3 tc" >Conversations:</h3>
+-->
+    <div class = "ma3 w-60 pa3 outline shadow-2">
+        <div class="flex space-between">
+            <p class = "ma3 b f4 tc" >Conversations:</p>
+        </div>
             {% if conversations %}
                 {% for conversation in conversations %}
                 <p><a href="#">{{ conversation.date }} <strong>{{ conversation.title }}</strong></a></p>
@@ -54,18 +71,11 @@ fetch ('https://api.github.com/users/scarter13')
     return response.json ()
 }) 
 .then (function (data) {
-    //console.log (data)
-    console.log (data.name)
-    console.log("In the function, name is " + data.name)
-    console.log (data.avatar_url)
-
-console.log("Outside of the function, the name is " + data.name)
-let targetElement = document.querySelector('#profilePic')
+let targetElement = document.querySelector('#DEFINE_THIS_DIV')
 //let headerElement = document.createElement ("h1")
 let imageEl = document.createElement ("div")
     imageEl.innerHTML = `<img src=${data.avatar_url}>`
         //headerElement.innerText = (data.name)
-        // console.log (headerElement)
     targetElement.appendChild(imageEl)
 })
 </script>

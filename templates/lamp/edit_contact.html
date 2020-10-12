@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="ml6 black">Edit Contact</h2>
+
+<div class="ml6 black">
+    <form action="{% url 'edit_contact' contact_pk=contact.pk %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <button class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" type="submit">Submit</button>
+        </div>
+
+    </form>
+</div>
+
+
+{% endblock %}
