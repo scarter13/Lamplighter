@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ contact.first_name }} {{ contact.last_name}}
+{% endblock %}
+
+{% block content %}
+
+
+<h2 class="tc">{{ contact.first_name }} {{ contact.last_name }}, {{ contact.company }}</h2>
+<div class="ma4">  
+    <h3>{{ note.title }}</h3>
+    <p> {{ note.date }}</p>
+    <div class="ma3">
+        <p>{{ note.text }}</p>
+    </div>
+    <div class="flex">
+        <p class="ma3"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="#">Edit</a></p>
+        <p class="ma3"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-red" href="#">Delete</a></p>
+    </div>
+
+
+</div>
+
+{% endblock %}

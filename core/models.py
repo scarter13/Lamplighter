@@ -49,7 +49,7 @@ class Conversation(models.Model):
     contact = models.ForeignKey(to=Contact, on_delete=models.CASCADE, null=True, related_name="conversations")
     title = models.CharField(max_length=255, blank=True, null=True, default="Untitled")
     notes = models.TextField(null=True, blank=True)
-    date = models.DateTimeField(auto_now_add=True) 
+    date = models.DateField(auto_now_add=True) 
 
     class Meta:
         ordering = ['-date']
@@ -59,7 +59,7 @@ class CompanyNote(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True)
     company = models.ForeignKey(to=Company, on_delete=models.CASCADE, null = True, related_name = "notes")
     text = models.TextField(null=True, blank=True, default="Untitled")
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateField(auto_now_add=True)
 
     class Meta:
         ordering = ['-date']

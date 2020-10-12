@@ -5,7 +5,7 @@
 <h2 class="ml6 black">{{ contact.name }}</h2>
 
 <div class="ma3">
-    <form class="ml6 pa2 w-100 black" action="{% url 'add_contact_note' %}" method = "POST">
+    <form class="ml6 pa2 w-100 black" action="{% url 'add_contact_note' contact_pk=contact.pk %}" method = "POST">
         {% csrf_token %}
         {{ form.as_p }}
         <div>

@@ -91,21 +91,9 @@ def add_contact_note(request, contact_pk):
     else:
         form = ContactNoteForm()
 
-    return render(request, "lamp/add_contactNote.html", {"contact": contact, "form": form})
-    
-"""
-def create_answer(request, question_pk):
-    question = get_object_or_404(Question, pk=question_pk)
-    if request.method == "POST":
-        form = AnswerForm(data=request.POST)
-        if form.is_valid():
-            answer = form.save(commit=False)
-            answer.author = request.user
-            answer.question = question
-            answer.save()
-            return redirect(to='show_question', question_pk=question.pk)
-    else:
-        form = AnswerForm()
+    return render(request, "lamp/add_contact_note.html", {"contact": contact, "form": form})
 
-    return render(request, "qbox/create_answer.html", {"form": form, "question": question})
-"""
+def contact_note_detail(request, note_pk):
+    note = get_object_or_404(ContactNote, pk=note_pk)
+    contact = note.contact
+    return render(request, "lamp/contact_note_detail.html", {"note": note, "contact": contact})

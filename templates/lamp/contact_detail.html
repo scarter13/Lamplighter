@@ -32,11 +32,11 @@
     <div class="ma3 w-30 pa3 outline shadow-2">
         <div class="flex justify-between">
             <p class = "ma3 b f4 tc" >Notes:</p>
-            <p class="tc"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="{% url 'add_contact_note' contact_pk=contact.pk %}">Add Note</a></p>
+            <p><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="{% url 'add_contact_note' contact_pk=contact.pk %}">Add Note</a></p>
         </div>
         {% if contact_notes %}
             {% for note in contact_notes %}
-            <p> <a href="#">{{ note.date }}  {{ note.title }}</a></p>
+            <p> <a href="{% url 'contact_note_detail' note_pk=note.pk %}">{{ note.title }}</a></p>
             {% endfor %}
         {% endif %}
     </div>
