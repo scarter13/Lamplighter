@@ -74,9 +74,12 @@ def edit_contact(request, contact_pk):
 
 def contact_detail(request, contact_pk):
     contact = get_object_or_404(Contact, pk=contact_pk)
+    #contact = contact.annotate(num_notes=Count('notes'))
+    #questions = questions.annotate(num_answers=Count('answers'))
     conversations = contact.conversations.all()
     contact_notes = contact.notes.all()
-    return render(request, "lamp/contact_detail.html", {"contact": contact, "conversations": conversations, "contact_notes": contact_notes})
+    num_notes = len(contact_notes)
+    return render(request, "lamp/contact_detail.html", {"contact": contact, "conversations": conversations, "contact_notes": contact_notes, "num_notes": num_notes})
 
 def add_contact_note(request, contact_pk):
     contact = get_object_or_404(Contact, pk=contact_pk)
@@ -93,7 +96,41 @@ def add_contact_note(request, contact_pk):
 
     return render(request, "lamp/add_contact_note.html", {"contact": contact, "form": form})
 
+def contact_notes(request, contact_pk):
+    contact = get_object_or_404(Contact, pk=contact_pk)
+    notes = contact.notes.all()
+    #context = {
+    #    'contact': contact,
+    #    'notes': notes,
+    #}
+    return render(request, "lamp/contact_notes.html", {"contact": contact, "notes": notes})
+
 def contact_note_detail(request, note_pk):
     note = get_object_or_404(ContactNote, pk=note_pk)
     contact = note.contact
     return render(request, "lamp/contact_note_detail.html", {"note": note, "contact": contact})
+
+def edit_note(request, note_pk):
+    note = get_object_or_404(request.user.contact_notes, pk=note_pk)
+    contact = note.contact
+    if request.method == 'POST':
+        form = ContactNoteForm(data=request.POST, instance=note)
+        if form.is_valid():
+            note = form.save()
+            return redirect(to='contact_notes', contact_pk=contact.pk)
+    else:
+        form = ContactNoteForm(instance=note)
+    return render (request, "lamp/edit_note.html", {"form": form, "note": note})   
+
+def delete_note(request, note_pk):
+    note = get_object_or_404(ContactNote, pk=note_pk)
+    contact = note.contact
+    if request.method == 'POST':
+        note.delete()
+        all_notes = contact.notes.all()
+        if len(all_notes) == 0:
+            return redirect(to='contact_detail', contact_pk=contact.pk)
+        return redirect(to='contact_notes', contact_pk=contact.pk)
+
+    return render(request, "lamp/delete_note.html",
+                  {"note": note, 'contact': contact})

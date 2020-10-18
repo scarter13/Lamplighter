@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="tc">{{ note.contact.first_name }} {{ note.contact.last_name }}, {{ note.contact.company }}</h2>
+
+<div class="ml6 black">
+    <form action="{% url 'edit_note' note_pk=note.pk %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <button class="f6 link dim br3 ph3 pv2 mb2 dib white bg-dark-green" type="submit">Update</button>
+        </div>
+
+    </form>
+</div>
+
+
+{% endblock %}

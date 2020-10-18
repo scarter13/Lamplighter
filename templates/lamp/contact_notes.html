@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ contact.first_name }} {{ contact.last_name}}
+{% endblock %}
+
+{% block content %}
+
+<h2 class="tc">{{ contact.first_name }} {{ contact.last_name }}, {{ contact.company }}</h2>
+<div class="ma4">  
+    {% for note in notes %}
+    <div class="outline shadow-2">
+        <h4 class="ma3 pt3">{{ note.title }}  {{ note.date }}</h4>
+        <p class="ma3">{{ note.text }}</p>
+        <div class="flex">
+            <p class="ma3"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="{% url 'edit_note' note_pk=note.pk %}">Edit</a></p>
+            <p class="ma3"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-red" href="{% url 'delete_note' note_pk=note.pk %}">Delete</a></p>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+
+{% endblock %}

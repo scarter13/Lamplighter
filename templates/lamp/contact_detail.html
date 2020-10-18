@@ -28,10 +28,10 @@
         {% endif %}
             <p class="ma3">Relationship:  {{ contact.relationship }}</p>  
             <p class="ma3">Status:  {{ contact.status }}</p>
-        <div class="flex justify-between">
-            <p class = "ma3 b f4 tc" >Notes:</p>
-            <p class="tc"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="#' contact_pk=contact.pk %}" title="edit">View</a></p>
-            <p><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="{% url 'add_contact_note' contact_pk=contact.pk %}">Add</a></p>
+        <div class="flex">
+            <p class = "ma3 b f4 tc" >Notes:  {{ num_notes }}  </p>
+            <p class="ma3 tc"><a href="{% url 'contact_notes' contact_pk=contact.pk %}" title="view_note">View</a></p>
+            <p class="ma3 tc"><a href="{% url 'add_contact_note' contact_pk=contact.pk %}">Add</a></p>
         </div>
     </div>
     <div class="ma2 w-30 pa3 outline shadow-2">

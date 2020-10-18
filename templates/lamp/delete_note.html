@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="tc">{{ contact.first_name }} {{ contact.last_name }}, {{ contact.company }}</h2>
+
+<div class="ma4 outline shadow-2">  
+    <h4 class="ma3 pt3">{{ note.title }}  {{ note.date }}</h4>
+    <div class="ma3">
+        <p>{{ note.text }}</p>
+        <form action="{% url 'delete_note' note_pk=note.pk %}" method="POST">
+        {% csrf_token %}
+        <p>Are you sure you want to delete this note?</p>
+            <div class="flex">
+            <button type="submit" class="f6 link dim br3 ph3 pv1 ma3 dib white bg-red">Delete</button>
+            <a class="f6 link dim br3 ph3 pv1 ma3 dib white bg-dark-green" href="{% url 'contact_notes' contact_pk=contact.pk %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
