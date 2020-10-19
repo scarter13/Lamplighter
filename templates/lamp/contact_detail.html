@@ -36,53 +36,15 @@
     </div>
     <div class="ma2 w-30 pa3 outline shadow-2">
         <div class="flex justify-between">
-            <p class = "ma3 b f4 tc" >Notes:</p>
-            <p><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="{% url 'add_contact_note' contact_pk=contact.pk %}">Add Note</a></p>
-        </div>
-        {% if contact_notes %}
-            {% for note in contact_notes %}
-            <p> <a href="{% url 'contact_note_detail' note_pk=note.pk %}">{{ note.title }}</a></p>
-            {% endfor %}
-        {% endif %}
-    </div>
-</div>
-<div class="flex justify-center">  
-<!--
-    <div class = "ma3 w-40 pa3 outline shadow-2">
-        <h3 class = "ma3 tc" >Notes:</h3>
-        {% if contact_notes %}
-            {% for note in contact_notes %}
-            <p> <a href="#">{{ note.date }}  {{ note.title }}</a></p>
-            {% endfor %}
-        {% endif %}
-    </div>
--->
-    <div class = "ma2 w-60 pa3 outline shadow-2">
-        <div class="flex space-between">
             <p class = "ma3 b f4 tc" >Conversations:</p>
+            <p><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="{% url 'add_conversation' contact_pk=contact.pk %}">New Conversation</a></p>
         </div>
-            {% if conversations %}
-                {% for conversation in conversations %}
-                <p><a href="#">{{ conversation.date }} <strong>{{ conversation.title }}</strong></a></p>
-                {% endfor %}
-            {% endif %}
+        {% if conversations %}
+            {% for conversation in conversations %}
+            <p><a href="{% url 'conversation_detail' conversation_pk=conversation.pk %}">{{ conversation.title }}, {{ conversation.date }} PK = {{ conversation.pk }}</a></p>
+            {% endfor %}
+        {% endif %}
     </div>
 </div>
-<!--
-<script>
-fetch ('https://api.github.com/users/scarter13')
-.then (function (response) {
-    //console.log (response)
-    return response.json ()
-}) 
-.then (function (data) {
-let targetElement = document.querySelector('#DEFINE_THIS_DIV')
-//let headerElement = document.createElement ("h1")
-let imageEl = document.createElement ("div")
-    imageEl.innerHTML = `<img src=${data.avatar_url}>`
-        //headerElement.innerText = (data.name)
-    targetElement.appendChild(imageEl)
-})
-</script>
--->
+
 {% endblock %}

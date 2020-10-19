@@ -72,10 +72,10 @@ def edit_contact(request, contact_pk):
 
     return render (request, "lamp/edit_contact.html", {"form": form, "contact": contact})
 
+""" You might consider removing contact_notes from the context in the contact_detail below; All you need at this point is the num_notes since you are no longer trying to render notes on the detail page.
+"""
 def contact_detail(request, contact_pk):
     contact = get_object_or_404(Contact, pk=contact_pk)
-    #contact = contact.annotate(num_notes=Count('notes'))
-    #questions = questions.annotate(num_answers=Count('answers'))
     conversations = contact.conversations.all()
     contact_notes = contact.notes.all()
     num_notes = len(contact_notes)
@@ -134,3 +134,25 @@ def delete_note(request, note_pk):
 
     return render(request, "lamp/delete_note.html",
                   {"note": note, 'contact': contact})
+
+def add_conversation(request, contact_pk):
+    contact = get_object_or_404(Contact, pk=contact_pk)
+    if request.method == "POST":
+        form = ConversationForm(data=request.POST)
+        if form.is_valid():
+            conversation = form.save(commit=False)
+            conversation.user = request.user
+            conversation.contact = contact
+            conversation.save()
+            return redirect(to='contact_detail', contact_pk=contact.pk)
+    else:
+        form = ConversationForm()
+
+    return render(request, "lamp/add_conversation.html", {"contact": contact, "form": form})
+
+def conversation_detail(request, conversation_pk):
+    conversation = get_object_or_404(Conversation, pk=conversation_pk)
+    contact = conversation.contact
+    return render(request, "lamp/conversation_detail.html", {"conversation": conversation, "contact": contact})
+
+    
