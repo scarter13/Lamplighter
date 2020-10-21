@@ -37,7 +37,7 @@ class Contact(models.Model):
     email = models.EmailField(blank=True, null=True)
     phone = PhoneField(blank=True, null=True, help_text='Contact Phone Number')
     linkedin = models.URLField(null=True, blank=True)
-    twitter = models.URLField(null=True, blank=True)
+    twitter = models.CharField(max_length=30, null=True, blank=True)
     status = models.CharField(max_length=13, choices=STATUS_CHOICES, default=NOT_RATED)
     relationship = models.CharField(max_length=8, choices=RELATIONSHIP_CHOICES, default=UNKNOWN)
     company = models.ForeignKey(to=Company, on_delete=models.CASCADE, blank=True, null=True, related_name="contacts")
@@ -52,7 +52,7 @@ class Conversation(models.Model):
     date = models.DateField(auto_now_add=True) 
 
     class Meta:
-        ordering = ['-date']
+        ordering = ['-pk']
 
 class CompanyNote(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, related_name="company_notes")

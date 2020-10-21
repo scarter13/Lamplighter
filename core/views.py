@@ -76,7 +76,7 @@ def edit_contact(request, contact_pk):
 """
 def contact_detail(request, contact_pk):
     contact = get_object_or_404(Contact, pk=contact_pk)
-    conversations = contact.conversations.all()
+    conversations = contact.conversations.all()[:3]
     contact_notes = contact.notes.all()
     num_notes = len(contact_notes)
     return render(request, "lamp/contact_detail.html", {"contact": contact, "conversations": conversations, "contact_notes": contact_notes, "num_notes": num_notes})
