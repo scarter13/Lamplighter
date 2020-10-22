@@ -164,4 +164,22 @@ def edit_conversation(request, conversation_pk):
             return redirect(to='conversation_detail', conversation_pk=conversation.pk)
     else:
         form = ConversationForm(instance=conversation)
-    return render (request, "lamp/edit_conversation.html", {"form": form, "conversation": conversation})         
+    return render (request, "lamp/edit_conversation.html", {"form": form, "conversation": conversation})    
+
+def delete_conversation(request, conversation_pk):
+    conversation = get_object_or_404(Conversation, pk=conversation_pk)
+    contact = conversation.contact
+    if request.method == 'POST':
+        conversation.delete()
+        all_conversations = contact.conversations.all()
+        if len(all_conversations) == 0:
+            return redirect(to='contact_detail', contact_pk=contact.pk)
+        return redirect(to='conversations', contact_pk=contact.pk)
+
+    return render(request, "lamp/delete_conversation.html",
+                  {"conversation": conversation, 'contact': contact})
+
+def conversations(request, contact_pk):
+    contact = get_object_or_404(Contact, pk=contact_pk)
+    conversations = contact.conversations.all()
+    return render(request, "lamp/conversations.html", {'contact': contact, 'conversations': conversations})

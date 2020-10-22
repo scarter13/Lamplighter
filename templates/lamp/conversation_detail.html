@@ -13,7 +13,7 @@
             <p class="ma3">{{ conversation.notes }}</p>
         <div class="flex">
             <p class="ma3"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="{% url 'edit_conversation' conversation_pk=conversation.pk %}">Edit</a></p>
-            <p class="ma3"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-red" href="#">Delete</a></p>
+            <p class="ma3"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-red" href="{% url 'delete_conversation' conversation_pk=conversation.pk %}">Delete</a></p>
         </div>
     </div>
 

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="tc"><a href="{% url 'contact_detail' contact_pk=contact.pk %}">{{ contact.first_name }} {{ contact.last_name }}, {{ contact.company }}</a></h2>
+
+<div class="ma4 outline shadow-2">  
+    <h4 class="ma3 pt3">{{ conversation.title }}  {{ conversation.date }}</h4>
+    <div class="ma3">
+        <p>{{ conversation.text }}</p>
+        <form action="{% url 'delete_conversation' conversation_pk=conversation.pk %}" method="POST">
+        {% csrf_token %}
+        <p>Are you sure you want to delete this conversation?</p>
+            <div class="flex">
+            <button type="submit" class="f6 link dim br3 ph3 pv1 ma3 dib white bg-red">Delete</button>
+            <a class="f6 link dim br3 ph3 pv1 ma3 dib white bg-dark-green" href="{% url 'contact_detail' contact_pk=contact.pk %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
