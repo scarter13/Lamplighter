@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<h2 class="tc"><a href="{% url 'contact_detail' contact_pk=contact.pk %}">{{ contact.first_name }} {{ contact.last_name }}, {{ contact.company }}</a></h2>
 <h2 class="ml6 black">Edit Contact</h2>
 
 <div class="ml6 black">

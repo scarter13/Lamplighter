@@ -155,4 +155,13 @@ def conversation_detail(request, conversation_pk):
     contact = conversation.contact
     return render(request, "lamp/conversation_detail.html", {"conversation": conversation, "contact": contact})
 
-    
+def edit_conversation(request, conversation_pk):
+    conversation = get_object_or_404(Conversation, pk=conversation_pk)
+    if request.method == 'POST':
+        form = ConversationForm(data=request.POST, instance=conversation)
+        if form.is_valid():
+            conversation = form.save()
+            return redirect(to='conversation_detail', conversation_pk=conversation.pk)
+    else:
+        form = ConversationForm(instance=conversation)
+    return render (request, "lamp/edit_conversation.html", {"form": form, "conversation": conversation})         

@@ -6,20 +6,17 @@
 
 {% block content %}
 
-
-<h2 class="tc">{{ contact.first_name }} {{ contact.last_name }}, {{ contact.company }}</h2>
+<h2 class="tc"><a href="{% url 'contact_detail' contact_pk=contact.pk %}">{{ contact.first_name }} {{ contact.last_name }}, {{ contact.company }}</a></h2>
 <div class="ma4">  
-    <h3>{{ conversation.title }}</h3>
-    <p> {{ conversation.date }}</p>
-    <div class="ma3">
-        <p>{{ conversation.notes }}</p>
+    <div class="outline shadow-2">    
+        <h3 class="ma3 pt3">{{ conversation.title }}, {{ conversation.date }}</h3>
+            <p class="ma3">{{ conversation.notes }}</p>
+        <div class="flex">
+            <p class="ma3"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="{% url 'edit_conversation' conversation_pk=conversation.pk %}">Edit</a></p>
+            <p class="ma3"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-red" href="#">Delete</a></p>
+        </div>
     </div>
-    <!--
-    <div class="flex">
-        <p class="ma3"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="#">Edit</a></p>
-        <p class="ma3"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-red" href="#">Delete</a></p>
-    </div>
-    -->
+
 
 </div>
 

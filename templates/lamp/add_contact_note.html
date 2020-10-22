@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h2 class="ml6 black">{{ contact.name }}</h2>
+<h2 class="tc"><a href="{% url 'contact_detail' contact_pk=contact.pk %}">{{ contact.first_name }} {{ contact.last_name }}, {{ contact.company }}</a></h2>
 
 <div class="ma3">
     <form class="ml6 pa2 w-100 black" action="{% url 'add_contact_note' contact_pk=contact.pk %}" method = "POST">

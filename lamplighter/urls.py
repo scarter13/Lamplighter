@@ -31,6 +31,7 @@ urlpatterns = [
     path('lamp/contact/notes/<int:contact_pk>', core_views.contact_notes, name = 'contact_notes'),
     path('lamp/conversation/<int:conversation_pk>', core_views.conversation_detail, name = 'conversation_detail'),
     path('lamp/conversation/new/<int:contact_pk>', core_views.add_conversation, name = 'add_conversation'),
+    path('lamp/conversation/edit/<int:conversation_pk>', core_views.edit_conversation, name = 'edit_conversation'),
     path('lamp/note/delete/<int:note_pk>', core_views.delete_note, name = 'delete_note'),
     path('lamp/note/edit/<int:note_pk>', core_views.edit_note, name = 'edit_note'),
     path('lamp/add/company/', core_views.add_company, name = 'add_company'),

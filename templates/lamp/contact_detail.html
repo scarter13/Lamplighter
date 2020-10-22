@@ -41,7 +41,7 @@
         </div>
         {% if conversations %}
             {% for conversation in conversations %}
-            <p><a href="{% url 'conversation_detail' conversation_pk=conversation.pk %}">{{ conversation.title }}, {{ conversation.date }} PK = {{ conversation.pk }}</a></p>
+            <p class="ma3"><a href="{% url 'conversation_detail' conversation_pk=conversation.pk %}">{{ conversation.title }}, {{ conversation.date }} PK = {{ conversation.pk }}</a></p>
             {% endfor %}
         {% endif %}
     </div>
