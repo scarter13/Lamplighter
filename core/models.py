@@ -68,9 +68,9 @@ class Conversation(models.Model):
 
 class CompanyNote(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, related_name="company_notes")
-    title = models.CharField(max_length=255, blank=True, null=True)
+    title = models.CharField(max_length=255, blank=True, null=True, default="Untitled")
     company = models.ForeignKey(to=Company, on_delete=models.CASCADE, null = True, related_name = "notes")
-    text = models.TextField(null=True, blank=True, default="Untitled")
+    text = models.TextField(null=True, blank=True)
     date = models.DateField(auto_now_add=True)
 
     class Meta:

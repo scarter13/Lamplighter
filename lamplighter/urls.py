@@ -37,7 +37,9 @@ urlpatterns = [
     path('lamp/note/delete/<int:note_pk>/', core_views.delete_note, name = 'delete_note'),
     path('lamp/note/edit/<int:note_pk>/', core_views.edit_note, name = 'edit_note'),
     path('lamp/add/company/', core_views.add_company, name = 'add_company'),
+    path('lamp/add/company/note/<int:company_pk>', core_views.add_company_note, name = 'add_company_note'),
     path('lamp/add/contact/', core_views.add_contact, name = 'add_contact'),
+    path('lamp/add/contact/<int:company_pk>/', core_views.add_company_contact, name = 'add_company_contact'),
     path('lamp/add/contact/note/<int:contact_pk>/', core_views.add_contact_note, name='add_contact_note'),
  
 ]

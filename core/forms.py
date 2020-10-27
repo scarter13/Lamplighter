@@ -7,6 +7,7 @@ class CompanyForm(forms.ModelForm):
         fields = [
             'name',
             'description',
+            'motivation',
             'careers',
         ]
 
@@ -17,6 +18,21 @@ class ContactForm(forms.ModelForm):
             'first_name',
             'last_name',
             'company',
+            'email',
+            'linkedin',
+            'twitter',
+            'phone',
+            'relationship',
+            'status',
+
+        ]
+
+class CompanyContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = [
+            'first_name',
+            'last_name',
             'email',
             'linkedin',
             'twitter',

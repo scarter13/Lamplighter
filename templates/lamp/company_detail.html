@@ -16,15 +16,21 @@
 </div>
 <div class="flex justify-center">    
     <div class = "ma3 w-40 pa3 outline shadow-2">
-        <h3 class = "ma3 tc" >Contacts:</h3>
+        <div class="flex justify-between">
+            <p class = "ma3 b f4 tc" >Contacts:</p>
+            <p class="tc"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="{% url 'add_company_contact' company_pk=company.pk%}">Add Contact</a></p>
+        </div>
         {% if contacts %}
             {% for contact in contacts %}
-                <p><a href="{% url 'contact_detail' contact_pk=contact.pk %}">{{ contact.first_name }} {{ contact.last_name }}</a></p>
+                <p class="ml3"><a href="{% url 'contact_detail' contact_pk=contact.pk %}">{{ contact.first_name }} {{ contact.last_name }}</a></p>
             {% endfor %}
         {% endif %}
     </div>
     <div class = "ma3 w-40 pa3 outline shadow-2">
-        <h3 class = "ma3 tc" >Notes:</h3>
+        <div class="flex justify-between">
+            <p class = "ma3 b f4 tc" >Notes:</p>
+            <p class="tc"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="{% url 'add_company_note' company_pk=company.pk%}">Add Note</a></p>
+        </div>
         {% if company_notes %}
             {% for note in company_notes %}
                 <p><a href="#"> {{ note.date }} <strong>{{ note.title }}</strong></a></p>

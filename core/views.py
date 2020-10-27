@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Count
 from .models import Company, Contact, Conversation, CompanyNote, ContactNote
-from .forms import CompanyForm, ContactForm, ConversationForm, CompanyNoteForm, ContactNoteForm
+from .forms import CompanyForm, CompanyContactForm, ContactForm, ConversationForm, CompanyNoteForm, ContactNoteForm
 
 
 # Create your views here.
@@ -41,6 +41,20 @@ def company_detail(request, company_pk):
     company_notes = company.notes.all()
     return render(request, "lamp/company_detail.html", {"company": company, "contacts": contacts, "company_notes": company_notes})
 
+def add_company_note(request, company_pk):
+    company = get_object_or_404(Company, pk=company_pk)
+    if request.method == "POST":
+        form = CompanyNoteForm(data=request.POST)
+        if form.is_valid():
+            company_note = form.save(commit=False)
+            company_note.user = request.user
+            company_note.save()
+            return redirect(to='company_detail', company_pk=company.pk)
+    else:
+        form = CompanyNoteForm()
+
+    return render(request, "lamp/add_company_note.html", {"company": company, "form": form})
+
 def my_contacts(request):
     print("navigated to my contacts")
     contacts = request.user.contacts.all()
@@ -58,6 +72,21 @@ def add_contact(request):
         form = ContactForm()
 
     return render(request, "lamp/add_contact.html", {"form": form})
+
+def add_company_contact(request, company_pk):
+    company = get_object_or_404(Company, pk=company_pk)
+    if request.method == "POST":
+        form = CompanyContactForm(data=request.POST)
+        if form.is_valid():
+            contact = form.save(commit=False)
+            contact.user = request.user
+            contact.company = company
+            contact.save()
+            return redirect(to='company_detail', company_pk=company.pk)
+    else:
+        form = CompanyContactForm()
+
+    return render(request, "lamp/add_company_contact.html", {"form": form, "company": company})
 
 def edit_contact(request, contact_pk):
     contact = get_object_or_404(request.user.contacts, pk=contact_pk)
