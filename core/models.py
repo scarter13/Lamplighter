@@ -61,7 +61,7 @@ class Conversation(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True, default="Untitled")
     notes = models.TextField(null=True, blank=True)
     date = models.DateField(auto_now_add=True) 
-    date_time = models.DateTimeField(auto_now_add=True)
+
 
     class Meta:
         ordering = ['-pk']
