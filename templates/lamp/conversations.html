@@ -9,7 +9,7 @@
 <h2 class="tc"><a href="{% url 'contact_detail' contact_pk=contact.pk %}">{{ contact.first_name }} {{ contact.last_name }}, {{ contact.company }}</a></h2>
 <div class="ma4">  
     {% for conversation in conversations %}
-    <div class="flex outline shadow-2">
+    <div class="ma3 flex outline shadow-2">
         <h3 class="ma3"><a class="f6 link dim br3 ph3 pv1 ma1 dib white bg-dark-green" href="{% url 'edit_conversation' conversation_pk=conversation.pk %}">Edit</a><a class="f6 link dim br3 ph3 pv1 ma1 dib white bg-red" href="{% url 'delete_conversation' conversation_pk=conversation.pk %}">Delete</a><a class="ma3" href="{% url 'conversation_detail' conversation_pk=conversation.pk %}">{{ conversation.title }},  {{ conversation.date }}</a></h3>
     </div>
 

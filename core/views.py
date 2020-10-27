@@ -48,12 +48,18 @@ def add_company_note(request, company_pk):
         if form.is_valid():
             company_note = form.save(commit=False)
             company_note.user = request.user
+            company_note.company = company
             company_note.save()
             return redirect(to='company_detail', company_pk=company.pk)
     else:
         form = CompanyNoteForm()
 
     return render(request, "lamp/add_company_note.html", {"company": company, "form": form})
+
+def company_note_detail(request, note_pk):
+    note = get_object_or_404(CompanyNote, pk=note_pk)
+    company = note.company
+    return render(request, "lamp/company_note_detail.html", {"note": note, "company": company})
 
 def my_contacts(request):
     print("navigated to my contacts")

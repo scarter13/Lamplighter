@@ -24,6 +24,7 @@ urlpatterns = [
     path('accounts/', include('registration.backends.simple.urls')),
     path('lamp/companies/', core_views.my_companies, name = 'my_companies'),
     path('lamp/company/<int:company_pk>/', core_views.company_detail, name = 'company_detail'),
+    path('lamp/company/note/<int:note_pk>/', core_views.company_note_detail, name = "company_note_detail"),
     path('lamp/contacts/', core_views.my_contacts, name = 'my_contacts'),
     path('lamp/contact/<int:contact_pk>/', core_views.contact_detail, name = 'contact_detail'),
     path('lamp/contact/edit/<int:contact_pk>/', core_views.edit_contact, name = 'edit_contact'),

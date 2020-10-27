@@ -33,7 +33,7 @@
         </div>
         {% if company_notes %}
             {% for note in company_notes %}
-                <p><a href="#"> {{ note.date }} <strong>{{ note.title }}</strong></a></p>
+                <p class="ml3"><a href="{% url 'company_note_detail' note_pk=note.pk %}"> {{ note.date }}:  {{ note.title }}</strong></a></p>
             {% endfor %}
         {% endif %}              
     </div>
