@@ -4,9 +4,20 @@ from phone_field import PhoneField
 
 
 class Company(models.Model):
+    UNDECIDED = 'UNDECIDED'
+    MILD = 'MILD'
+    MODERATE = 'MODERATE'
+    HIGH = 'HIGH'
+    MOTIVATION_CHOICES =[
+        (UNDECIDED, 'Undecided'),
+        (MILD, 'Mild'),
+        (MODERATE, 'Moderate'),
+        (HIGH, 'High'),
+        ]
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, related_name="companies")
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
+    motivation = models.CharField(max_length=9, choices=MOTIVATION_CHOICES, default=UNDECIDED)
     careers = models.URLField(null=True, blank=True, help_text='(A link to the company job board)')
 
     def __str__(self):
@@ -50,6 +61,7 @@ class Conversation(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True, default="Untitled")
     notes = models.TextField(null=True, blank=True)
     date = models.DateField(auto_now_add=True) 
+    date_time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-pk']
