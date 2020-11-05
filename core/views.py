@@ -16,7 +16,6 @@ def my_home(request):
 
 def my_companies(request):
     companies = request.user.companies.all()
-    print("inside my companies view")
     #think about a helper function to sort them.  Javascript?
     #companies = lamp_sort(companies)
     companies = companies.annotate(num_contacts=Count("contacts"))
@@ -93,6 +92,16 @@ def add_company_contact(request, company_pk):
         form = CompanyContactForm()
 
     return render(request, "lamp/add_company_contact.html", {"form": form, "company": company})
+
+def delete_contact(request, contact_pk):
+    contact = get_object_or_404(Contact, pk=contact_pk)
+    conversations = contact.conversations.all()[:3]
+    if request.method == 'POST':
+        contact.delete()
+        return redirect(to='my_contacts')
+
+    return render(request, "lamp/delete_contact.html",
+                  {'contact': contact, 'conversations': conversations})
 
 def edit_contact(request, contact_pk):
     contact = get_object_or_404(request.user.contacts, pk=contact_pk)

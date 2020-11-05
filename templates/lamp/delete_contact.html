@@ -1,18 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}
-{{ contact.first_name }} {{ contact.last_name}}
-{% endblock %}
-
 {% block content %}
-
-
-<h2 class="tc">{{ contact.first_name }} {{ contact.last_name }}, {{ contact.company }}</h2>
+<h2 class="tc"><a href="{% url 'contact_detail' contact_pk=contact.pk %}">{{ contact.first_name }} {{ contact.last_name }}, {{ contact.company }}</a></h2>
+<div class="flex justify-center">
+    <div class="ma4 w-60 outline shadow-2">  
+        <div class="ma3">
+            <form action="{% url 'delete_contact' contact_pk=contact.pk %}" method="POST">
+                {% csrf_token %}
+                <h3 class ="tc">Are you sure you want to delete this Contact?</h3>
+                <div class="flex justify-center">
+                    <button type="submit" class="f6 link dim br3 ph3 pv1 ma3 dib white bg-red">Delete</button>
+                    <a class="f6 link dim br3 ph3 pv1 ma3 dib white bg-dark-green" href="{% url 'contact_detail' contact_pk=contact.pk %}">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <div class="flex justify-center">  
     <div class="ma2 w-30 pa3 outline shadow-2">
         <div class="flex justify-between">
             <p class = "ma3 b f4 tc" >Details:</p>
-            <p class="tc"><a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-dark-green" href="{% url 'edit_contact' contact_pk=contact.pk %}" title="edit">Edit</a></p>
         </div>
         {% if contact.email %}
             <p class="ma3">Email:  {{ contact.email }}</p>
@@ -28,15 +35,7 @@
         {% endif %}
             <p class="ma3">Relationship:  {{ contact.relationship }}</p>  
             <p class="ma3">Status:  {{ contact.status }}</p>
-        <div class="flex">
-            <p class = "ma3 b f4 tc" >Notes:  {{ num_notes }}  </p>
-            <p class="ma3 tc"><a href="{% url 'contact_notes' contact_pk=contact.pk %}" title="view_note">View</a></p>
-            <p class="ma3 tc"><a href="{% url 'add_contact_note' contact_pk=contact.pk %}">Add</a></p>
-        </div>
-            <div>
-                <a class="f6 link dim br3 ph3 pv1 mb2 dib white bg-red" href="{% url 'delete_contact' contact_pk=contact.pk %}">Delete Contact</a>
-            </div>
-        </div>
+    </div>
     <div class="ma2 w-30 pa3 outline shadow-2">
         <div class="flex justify-between">
             <p class = "ma3 b f4 tc" >Conversations:</p>
@@ -49,6 +48,5 @@
             <p class="ma3"><a href="{% url 'conversations' contact_pk=contact.pk %}">More</a></p>
         {% endif %}
     </div>
-</div>
-
+</div>   
 {% endblock %}
