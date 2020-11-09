@@ -179,6 +179,10 @@ def delete_note(request, note_pk):
     return render(request, "lamp/delete_note.html",
                   {"note": note, 'contact': contact})
 
+def my_conversations(request):
+    conversations = request.user.conversations.all
+    return render(request, "lamp/my_conversations.html", {"conversations": conversations})
+
 def add_conversation(request, contact_pk):
     contact = get_object_or_404(Contact, pk=contact_pk)
     if request.method == "POST":

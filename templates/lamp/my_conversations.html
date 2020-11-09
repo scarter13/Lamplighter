@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h2 class="tc">My Conversations</h2>
+<div class="ma4">  
+    {% for conversation in conversations %}
+    <div class="ma3 flex outline shadow-2">
+        <div class="ma3">
+            <a class="f6 link dim br3 ph3 pv1 ma1 dib white bg-dark-green" href="{% url 'edit_conversation' conversation_pk=conversation.pk %}">Edit</a>
+            <a class="f6 link dim br3 ph3 pv1 ma1 dib white bg-red" href="{% url 'delete_conversation' conversation_pk=conversation.pk %}">Delete</a>
+        </div>
+        <div>
+            <h3 class="mb0"><a href="{% url 'contact_detail' contact_pk=conversation.contact.pk %}">{{ conversation.contact.first_name }} {{ conversation.contact.last_name }}</a></h3>
+            <p class="mt1 mb1"><a class="ml3 mt0 mb0" href="{% url 'conversation_detail' conversation_pk=conversation.pk %}">{{ conversation.title }},  {{ conversation.date }}</a></p>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

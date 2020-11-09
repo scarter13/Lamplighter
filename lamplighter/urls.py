@@ -36,6 +36,7 @@ urlpatterns = [
     path('lamp/conversation/new/<int:contact_pk>/', core_views.add_conversation, name = 'add_conversation'),
     path('lamp/conversation/edit/<int:conversation_pk>/', core_views.edit_conversation, name = 'edit_conversation'),
     path('lamp/conversation/delete/<int:conversation_pk>/', core_views.delete_conversation, name = 'delete_conversation'),
+    path('lamp/conversations/all/', core_views.my_conversations, name = 'my_conversations'),
     path('lamp/note/delete/<int:note_pk>/', core_views.delete_note, name = 'delete_note'),
     path('lamp/note/edit/<int:note_pk>/', core_views.edit_note, name = 'edit_note'),
     path('lamp/add/company/', core_views.add_company, name = 'add_company'),
